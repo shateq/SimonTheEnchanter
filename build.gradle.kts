@@ -9,7 +9,7 @@ plugins {
 val mc = "1.19.2"
 group = "shateq.bukkit"
 version = "1.0.0"
-description = "Minecraft Server Enchantments experience"
+description = "Bukkit Enchanting Experience"
 base.archivesName.set("simon-the-enchanter-$mc")
 
 repositories {
@@ -39,11 +39,12 @@ tasks {
 bukkit {
 	name = "SimonTheEnchanter"
 	version = project.version.toString()
-	main = "shateq.theenchanter.bukkit.BukkitEnchants"
+	main = "shateq.theenchanter.bukkit.BukkitEnchanter"
 	apiVersion = "1.19"
 
 	load = BukkitPluginDescription.PluginLoadOrder.STARTUP
 	prefix = "STE"
 	authors = listOf("Shateq")
 	softDepend = listOf("ProtocolLib")
+	commands {}
 }

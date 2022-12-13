@@ -1,21 +1,28 @@
 package shateq.theenchanter.bukkit.enchantments;
 
 import io.papermc.paper.enchantments.EnchantmentRarity;
-import net.kyori.adventure.text.Component;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.EntityCategory;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import shateq.theenchanter.bukkit.RecordableEnchant;
+import shateq.theenchanter.bukkit.BukkitEnchanter;
+import shateq.theenchanter.bukkit.SimonsEnchant;
 
 import java.util.EnumSet;
 import java.util.Set;
 
-public class Fertilizer extends RecordableEnchant {
+public class Fertilizer extends SimonsEnchant {
 	public Fertilizer() {
-		super("fertilizer");
+		super("Fertilizer","fertilizer");
+	}
+
+	@EventHandler
+	public void onMove(@NotNull PlayerMoveEvent e) {
+		BukkitEnchanter.it().getSLF4JLogger().info("Moved who? {}", e.getPlayer().getName());
 	}
 
 	@Override
@@ -29,16 +36,6 @@ public class Fertilizer extends RecordableEnchant {
 	}
 
 	@Override
-	public boolean isTreasure() {
-		return false;
-	}
-
-	@Override
-	public boolean isCursed() {
-		return false;
-	}
-
-	@Override
 	public boolean conflictsWith(@NotNull Enchantment other) {
 		return false;
 	}
@@ -46,11 +43,6 @@ public class Fertilizer extends RecordableEnchant {
 	@Override
 	public boolean canEnchantItem(@NotNull ItemStack item) {
 		return false;
-	}
-
-	@Override
-	public @NotNull Component displayName(int level) {
-		return Component.text("Fertilizer");
 	}
 
 	@Override
